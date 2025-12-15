@@ -1,0 +1,16 @@
+name: Daily Gold Rate Fetch
+
+on:
+  schedule:
+    # 04:30 AM UTC = 10:00 AM IST
+    - cron: "30 4 * * *"
+  workflow_dispatch:   # allows manual run
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Call backend API
+        run: |
+          curl -X GET https://gold-backend-goge.onrender.com/rates/today
